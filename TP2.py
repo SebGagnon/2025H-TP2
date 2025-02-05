@@ -29,7 +29,7 @@ def load_csv(csv_path):
     patients_dict = {}
 
     # TODO : Écrire votre code ici
-
+    a=2+2
 
     # Fin du code
 
