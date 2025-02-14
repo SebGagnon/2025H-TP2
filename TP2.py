@@ -28,22 +28,15 @@ def load_csv(csv_path):
         
     """
     patients_dict={}
-    dict_patient={}
-
-
+  
     with open(csv_path, 'r') as file :
         reader=csv.DictReader(file)
         for row in reader :
-            dummy=row['participant_id']
+            id=row['participant_id']
             del row['participant_id']
-            patients_dict[dummy]=row
+            patients_dict[id]=row
 
             
-
-    print(patients_dict['sub-tokyoIngenia04'])
-
-
-
     return patients_dict
 
 ########################################################################################################## 
@@ -67,12 +60,19 @@ def load_multiple_csv(csv_path1, csv_path2):
     patients_dict : dictionnaire python (dict)
         Dictionnaire composé des informations contenues dans les deux fichier csv SANS DUPLICATIONS
     """
-    patients_dict = {}
+    
 
-    # TODO : Écrire votre code ici
+    patients_dict=load_csv(csv_path1)
+    print(len(patients_dict))
+    dictionnaire2=load_csv(csv_path2)
+    for cle in dictionnaire2 :
+        if cle not in patients_dict :
+            patients_dict[cle]=dictionnaire2[cle]
+        else :
+            print(cle)
 
-
-    # Fin du code
+    print(len(patients_dict))
+    print(len(dictionnaire2))
 
     return patients_dict
 
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     patients_dict = load_csv(csv_path)
 
     # Affichage du résultat
-    print("Partie 1: \n\n", patients_dict, "\n")
+   # print("Partie 1: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 2 #
@@ -234,7 +234,7 @@ if __name__ == '__main__':
     new_patients_dict = update_convention(patients_dict)
 
     # Affichage du résultat
-    print("Partie 3: \n\n", patients_dict, "\n")
+   # print("Partie 3: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 4 #
@@ -244,7 +244,7 @@ if __name__ == '__main__':
     patients_list = fetch_candidates(patients_dict)
 
     # Affichage du résultat
-    print("Partie 4: \n\n", patients_list, "\n")
+    #print("Partie 4: \n\n", patients_list, "\n")
 
     ######################
     # Tester la partie 5 #
@@ -254,7 +254,7 @@ if __name__ == '__main__':
     metrics = fetch_statistics(patients_dict)
 
     # Affichage du résultat
-    print("Partie 5: \n\n", metrics, "\n")
+   # print("Partie 5: \n\n", metrics, "\n")
 
     ######################
     # Tester la partie 6 #
@@ -268,5 +268,5 @@ if __name__ == '__main__':
     paths_list = create_csv(metrics)
 
     # Affichage du résultat
-    print("Partie 6: \n\n", paths_list, "\n")
+   # print("Partie 6: \n\n", paths_list, "\n")
 
