@@ -63,16 +63,11 @@ def load_multiple_csv(csv_path1, csv_path2):
     
 
     patients_dict=load_csv(csv_path1)
-    print(len(patients_dict))
     dictionnaire2=load_csv(csv_path2)
+
     for cle in dictionnaire2 :
         if cle not in patients_dict :
             patients_dict[cle]=dictionnaire2[cle]
-        else :
-            print(cle)
-
-    print(len(patients_dict))
-    print(len(dictionnaire2))
 
     return patients_dict
 
@@ -97,10 +92,12 @@ def update_convention(old_convention_dict):
     """
     new_convention_dict = {}
 
-    # TODO : Écrire votre code ici
+    for cle in old_convention_dict :
+        (old_convention_dict[cle]['date_of_scan'])=(old_convention_dict[cle]['date_of_scan']).replace('-','/')
+        if (old_convention_dict[cle]['date_of_scan'])== 'n/a' :
+            (old_convention_dict[cle]['date_of_scan'])= None       
 
-
-    # Fin du code
+    new_convention_dict = old_convention_dict
 
     return new_convention_dict
 
@@ -224,7 +221,7 @@ if __name__ == '__main__':
     patients_dict_multi = load_multiple_csv(csv_path1=csv_path1, csv_path2=csv_path2)
 
     # Affichage du résultat
-    print("Partie 2: \n\n", patients_dict_multi, "\n")
+   # print("Partie 2: \n\n", patients_dict_multi, "\n")
 
     ######################
     # Tester la partie 3 #
@@ -234,7 +231,7 @@ if __name__ == '__main__':
     new_patients_dict = update_convention(patients_dict)
 
     # Affichage du résultat
-   # print("Partie 3: \n\n", patients_dict, "\n")
+    print("Partie 3: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 4 #
