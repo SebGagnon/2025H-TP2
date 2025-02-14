@@ -25,13 +25,24 @@ def load_csv(csv_path):
     ---------
     patients_dict : dictionnaire python (dict)
         Dictionnaire composé des informations contenues dans le fichier csv
+        
     """
-    patients_dict = {}
+    patients_dict={}
+    dict_patient={}
 
-    # TODO : Écrire votre code ici
-    a=2+2
 
-    # Fin du code
+    with open(csv_path, 'r') as file :
+        reader=csv.DictReader(file)
+        for row in reader :
+            dummy=row['participant_id']
+            del row['participant_id']
+            patients_dict[dummy]=row
+
+            
+
+    print(patients_dict['sub-tokyoIngenia04'])
+
+
 
     return patients_dict
 
