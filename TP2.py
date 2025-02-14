@@ -124,10 +124,12 @@ def fetch_candidates(patients_dict):
     """
     candidates_list = []
 
-    # TODO : Écrire votre code ici
-
-
-    # Fin du code
+    for cle in patients_dict:
+        if patients_dict[cle]['sex']=='F':
+            if 25<=int(patients_dict[cle]['age'])<=32 :
+                if int(patients_dict[cle]['height']) > 180 :
+                       candidates_list.append(cle)
+    print(candidates_list)
 
     return candidates_list
 
@@ -231,7 +233,7 @@ if __name__ == '__main__':
     new_patients_dict = update_convention(patients_dict)
 
     # Affichage du résultat
-    print("Partie 3: \n\n", patients_dict, "\n")
+    #print("Partie 3: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 4 #
