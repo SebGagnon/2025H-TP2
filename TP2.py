@@ -127,9 +127,9 @@ def fetch_candidates(patients_dict):
     for cle in patients_dict:
         if patients_dict[cle]['sex']=='F':
             if 25<=int(patients_dict[cle]['age'])<=32 :
-                if int(patients_dict[cle]['height']) > 180 :
+                if int(patients_dict[cle]['height']) > 170 :
                        candidates_list.append(cle)
-    print(candidates_list)
+
 
     return candidates_list
 
@@ -158,9 +158,156 @@ def fetch_statistics(patients_dict):
     """
     metrics = {'M':{}, 'F':{}}
 
-    # TODO : Écrire votre code ici
+    # TODO : Écrire votre code ici\
 
+    # Moyenne et ecart type age filles
 
+    nombre_filles=0
+    age_filles=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='F':
+            if patients_dict[cle]['age']!='n/a':
+                nombre_filles+=1
+                age_filles+=int(patients_dict[cle]['age'])
+      
+    moyenne_age_filles=age_filles/nombre_filles
+   
+    ecart=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='F':
+            if patients_dict[cle]['age']!='n/a':
+                ecart=ecart + (int(patients_dict[cle]['age'])-moyenne_age_filles)**2
+
+    ecart_type_age_filles=(ecart/moyenne_age_filles)**(0.5)
+    
+    # Moyenne et ecart type taille filles
+
+    nombre_filles=0
+    taille_filles=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='F':
+            if patients_dict[cle]['height']!='n/a':
+                nombre_filles+=1
+                taille_filles+=int(patients_dict[cle]['height'])
+      
+    moyenne_taille_filles=taille_filles/nombre_filles
+   
+    ecart=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='F':
+            if patients_dict[cle]['height']!='n/a':
+                ecart=ecart + (int(patients_dict[cle]['height'])-moyenne_taille_filles)**2
+                
+    ecart_type_taille_filles=(ecart/moyenne_taille_filles)**(0.5)
+    
+    # Moyenne et ecart type poids
+
+    nombre_filles=0
+    poids_filles=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='F':
+            if patients_dict[cle]['weight']!='n/a':
+                nombre_filles+=1
+                poids_filles+=int(patients_dict[cle]['weight'])
+      
+    moyenne_poids_filles=poids_filles/nombre_filles
+   
+    ecart=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='F':
+            if patients_dict[cle]['weight']!='n/a':
+                ecart=ecart + (int(patients_dict[cle]['weight'])-moyenne_poids_filles)**2
+                
+    ecart_type_poids_filles=(ecart/moyenne_poids_filles)**(0.5)
+    
+    print(moyenne_age_filles)
+    print(ecart_type_age_filles)
+    print(moyenne_poids_filles)
+    print(ecart_type_poids_filles)
+    print(moyenne_taille_filles)
+    print(ecart_type_taille_filles)
+    
+     # Moyenne et ecart type age gars
+
+    nombre_gars=0
+    age_gars=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='M':
+            if patients_dict[cle]['age']!='n/a':
+                nombre_gars+=1
+                age_gars+=int(patients_dict[cle]['age'])
+      
+    moyenne_age_gars=age_gars/nombre_gars
+   
+    ecart=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='M':
+            if patients_dict[cle]['age']!='n/a':
+                ecart=ecart + (int(patients_dict[cle]['age'])-moyenne_age_gars)**2
+
+    ecart_type_age_gars=(ecart/moyenne_age_gars)**(0.5)
+    
+    # Moyenne et ecart type taille gars
+
+    nombre_gars=0
+    taille_gars=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='M':
+            if patients_dict[cle]['height']!='n/a':
+                nombre_gars+=1
+                taille_gars+=int(patients_dict[cle]['height'])
+      
+    moyenne_taille_gars=taille_gars/nombre_gars
+   
+    ecart=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='M':
+            if patients_dict[cle]['height']!='n/a':
+                ecart=ecart + (int(patients_dict[cle]['height'])-moyenne_taille_gars)**2
+                
+    ecart_type_taille_gars=(ecart/moyenne_taille_gars)**(0.5)
+    
+    # Moyenne et ecart type poids
+
+    nombre_gars=0
+    poids_gars=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='M':
+            if patients_dict[cle]['weight']!='n/a':
+                nombre_gars+=1
+                poids_gars+=float(patients_dict[cle]['weight'])
+      
+    moyenne_poids_gars=poids_gars/nombre_gars
+   
+    ecart=0
+
+    for cle in patients_dict :
+        if patients_dict[cle]['sex']=='M':
+            if patients_dict[cle]['weight']!='n/a':
+                ecart=ecart + (float(patients_dict[cle]['weight'])-moyenne_poids_gars)**2
+                
+    ecart_type_poids_gars=(ecart/moyenne_poids_gars)**(0.5)
+    
+    print(moyenne_age_gars)
+    print(ecart_type_age_gars)
+    print(moyenne_poids_gars)
+    print(ecart_type_poids_gars)
+    print(moyenne_taille_gars)
+    print(ecart_type_taille_gars)
+                
+      
+      
     # Fin du code
 
     return metrics
@@ -209,7 +356,7 @@ if __name__ == '__main__':
     patients_dict = load_csv(csv_path)
 
     # Affichage du résultat
-   # print("Partie 1: \n\n", patients_dict, "\n")
+    #print("Partie 1: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 2 #
