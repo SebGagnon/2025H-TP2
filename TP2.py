@@ -226,12 +226,6 @@ def fetch_statistics(patients_dict):
                 
     ecart_type_poids_filles=(ecart/moyenne_poids_filles)**(0.5)
     
-    print(moyenne_age_filles)
-    print(ecart_type_age_filles)
-    print(moyenne_poids_filles)
-    print(ecart_type_poids_filles)
-    print(moyenne_taille_filles)
-    print(ecart_type_taille_filles)
     
      # Moyenne et ecart type age gars
 
@@ -299,13 +293,9 @@ def fetch_statistics(patients_dict):
                 
     ecart_type_poids_gars=(ecart/moyenne_poids_gars)**(0.5)
     
-    print(moyenne_age_gars)
-    print(ecart_type_age_gars)
-    print(moyenne_poids_gars)
-    print(ecart_type_poids_gars)
-    print(moyenne_taille_gars)
-    print(ecart_type_taille_gars)
-                
+    
+    
+    metrics = {'M':{'age':{'mean':moyenne_age_gars,'std':ecart_type_age_gars},'height':{'mean':moyenne_taille_gars,'std': ecart_type_taille_gars},'weight':{'mean':moyenne_poids_gars,'std':ecart_type_poids_gars}}, 'F':{'age':{"mean":moyenne_age_filles,'std':ecart_type_age_filles},'height':{'mean':moyenne_taille_filles,'std':ecart_type_taille_filles},'weight':{'mean':moyenne_poids_filles,'std': ecart_type_poids_filles }}}
       
       
     # Fin du code
@@ -400,7 +390,8 @@ if __name__ == '__main__':
     metrics = fetch_statistics(patients_dict)
 
     # Affichage du résultat
-   # print("Partie 5: \n\n", metrics, "\n")
+    #print("Partie 5: \n\n", metrics, "\n")
+    print(metrics['M']['age']['std'])
 
     ######################
     # Tester la partie 6 #
