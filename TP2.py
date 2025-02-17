@@ -324,10 +324,22 @@ def create_csv(metrics):
     paths_list = []
 
     # TODO : Écrire votre code ici
+    
+    fieldnames = ['stats', 'age', 'height', 'weight']
+    with open('F_metrics.csv','w',newline='') as file :
+        writer=csv.writer(file,delimiter=',')
+        writer.writerow([i for i in fieldnames])
+        writer.writerow(['mean',str(metrics['F']['age']['mean']),str(metrics['F']['height']['mean']),str(metrics['F']['weight']['mean'])])
+        writer.writerow(['std',str(metrics['F']['age']['std']),str(metrics['F']['height']['std']),str(metrics['F']['weight']['std'])])
+    with open('M_metrics.csv','w',newline='') as file :
+        writer=csv.writer(file,delimiter=',')
+        writer.writerow([i for i in fieldnames])
+        writer.writerow(['mean',str(metrics['M']['age']['mean']),str(metrics['M']['height']['mean']),str(metrics['M']['weight']['mean'])])
+        writer.writerow(['std',str(metrics['M']['age']['std']),str(metrics['M']['height']['std']),str(metrics['M']['weight']['std'])])
 
-
+    paths_list = ['F_metrics.csv','M_metrics.csv']
     # Fin du code
-
+   
     return paths_list
 
 ########################################################################################################## 
@@ -346,7 +358,7 @@ if __name__ == '__main__':
     patients_dict = load_csv(csv_path)
 
     # Affichage du résultat
-    #print("Partie 1: \n\n", patients_dict, "\n")
+    print("Partie 1: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 2 #
@@ -360,7 +372,7 @@ if __name__ == '__main__':
     patients_dict_multi = load_multiple_csv(csv_path1=csv_path1, csv_path2=csv_path2)
 
     # Affichage du résultat
-   # print("Partie 2: \n\n", patients_dict_multi, "\n")
+    print("Partie 2: \n\n", patients_dict_multi, "\n")
 
     ######################
     # Tester la partie 3 #
@@ -370,7 +382,7 @@ if __name__ == '__main__':
     new_patients_dict = update_convention(patients_dict)
 
     # Affichage du résultat
-    #print("Partie 3: \n\n", patients_dict, "\n")
+    print("Partie 3: \n\n", patients_dict, "\n")
 
     ######################
     # Tester la partie 4 #
@@ -380,7 +392,7 @@ if __name__ == '__main__':
     patients_list = fetch_candidates(patients_dict)
 
     # Affichage du résultat
-    #print("Partie 4: \n\n", patients_list, "\n")
+    print("Partie 4: \n\n", patients_list, "\n")
 
     ######################
     # Tester la partie 5 #
@@ -390,8 +402,8 @@ if __name__ == '__main__':
     metrics = fetch_statistics(patients_dict)
 
     # Affichage du résultat
-    #print("Partie 5: \n\n", metrics, "\n")
-    print(metrics['M']['age']['std'])
+    print("Partie 5: \n\n", metrics, "\n")
+    
 
     ######################
     # Tester la partie 6 #
@@ -405,5 +417,5 @@ if __name__ == '__main__':
     paths_list = create_csv(metrics)
 
     # Affichage du résultat
-   # print("Partie 6: \n\n", paths_list, "\n")
+    print("Partie 6: \n\n", paths_list, "\n")
 
